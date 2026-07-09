@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PRM - Files</title>
     <link rel="stylesheet" href="style.css">
+    <script src="filespg.js" defer></script>
 </head>
 
 <body class="bg-olive-950">
     <search>
         <form class="flex justify-center pt-20 font-mono">
-                <input class="border-2 border-white text-white rounded-lg p-1 text-[clamp(1.4rem,1.4vw,2vw)]" 
+                <input  id="search-form" class="border-2 border-white text-white rounded-lg p-1 text-[clamp(1.4rem,1.4vw,2vw)]" 
             type="search" placeholder="search...">
         </form>
     </search>
@@ -23,7 +24,7 @@
         </select>
     </section>
 
-    <section class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 pt-10 w-full max-w-screen-2xl mx-auto">
+    <section id="profile-cards" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 pt-10 w-full max-w-screen-2xl mx-auto">
 
         <a href="profile.html" class="flex flex-col items-center justify-center p-4 rounded-xl cursor-pointer outline-none bg-olive-950 hover:bg-zinc-900">
             <svg class="w-32 h-32 text-zinc-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
