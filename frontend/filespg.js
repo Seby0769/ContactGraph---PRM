@@ -2,9 +2,9 @@
 const profileCardsContainer = document.querySelector ('#profile-cards');
 
 let profiles = [
-    {lastname: "Aris", firstname: "Giani"},
-    {lastname: "Dumitru", firstname: "Ion"},
-    {lastname: "Tepes", firstname: "Vlad"},
+    {id: 1, lastname: "Aris", firstname: "Giani"},
+    {id: 2, lastname: "Dumitru", firstname: "Ion"},
+    {id: 3, lastname: "Tepes", firstname: "Vlad"},
 ];
 
 function renderCards(dataArray) {
@@ -12,7 +12,7 @@ function renderCards(dataArray) {
 
     dataArray.forEach(function(profile){
     const htmlString = 
-            `<a href="profile.html" class="flex flex-col items-center justify-center p-4 rounded-xl cursor-pointer outline-none bg-olive-950 hover:bg-zinc-900">
+            `<a href="profile.html?id=${profile.id}" class="flex flex-col items-center justify-center p-4 rounded-xl cursor-pointer outline-none bg-olive-950 hover:bg-zinc-900">
                     <svg class="w-32 h-32 text-zinc-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
                         <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
                     </svg>
@@ -64,4 +64,13 @@ filter.addEventListener('change' , function(event){
 
     renderCards(profiles);
 });
+
+//add file button:
+// const addFile = document.querySelector('#addFile');
+
+// addFile.addEventListener('click', function(event){
+//     const click = event.target.value;
+
+
+// });
 
