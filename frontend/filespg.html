@@ -16,65 +16,26 @@
         </form>
     </search>
     
-    <section class="text-white font-mono flex w-fit h-fit mt-16 ml-10 border-2 border-white rounded-lg text-[clamp(1rem,1vw,2vw)]">
-        <label class="p-1" for="filter">order by:</label>
-        <select class="bg-transparent outline-none focus:outline-none focus:ring-0" id="filter">
-            <option id="alphabetically" class="bg-olive-950 text-white" value="alphabetically">alphabetically</option>
-            <option id="reverse-alphabetically" class="bg-olive-950 text-white" value="reverse-alphabetically">reverse-alphabetically</option>
-        </select>
+    <section class="flex justify-between">
+        <div class="text-white font-mono flex w-fit h-fit mt-16 ml-10 border-2 border-white rounded-lg text-[clamp(1rem,1vw,2vw)]">
+            <label class="p-1" for="filter">order by:</label>
+            <select class="bg-transparent outline-none focus:outline-none focus:ring-0" id="filter">
+                <option id="alphabetically" class="bg-olive-950 text-white" value="alphabetically">alphabetically</option>
+                <option id="reverse-alphabetically" class="bg-olive-950 text-white" value="reverse-alphabetically">reverse-alphabetically</option>
+            </select>
+        </div>
+        
+        <div class="pt-15">
+            <button class="px-3 py-1 mr-3 text-lg font-mono text-zinc-300 border border-zinc-600 rounded hover:bg-zinc-800 hover:text-white transition-colors">
+                + Add File
+            </button>
+        </div>
     </section>
+
 
     <section id="profile-cards" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 pt-10 w-full max-w-screen-2xl mx-auto">
 
-        <a href="profile.html" class="flex flex-col items-center justify-center p-4 rounded-xl cursor-pointer outline-none bg-olive-950 hover:bg-zinc-900">
-            <svg class="w-32 h-32 text-zinc-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
-                <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
-            </svg>
-            <div class="mt-3 text-white font-mono font-bold text-sm text-center leading-tight">
-                <p>Aris</p>
-                <p class="text-zinc-400">Giani</p>
-            </div>
-        </a>
-
-        <a href="profile.html" class="flex flex-col items-center justify-center p-4 rounded-xl cursor-pointer outline-none bg-olive-950 hover:bg-zinc-900">
-            <svg class="w-32 h-32 text-zinc-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
-                <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
-            </svg>
-            <div class="mt-3 text-white font-mono font-bold text-sm text-center leading-tight">
-                <p>Billie</p>
-                <p class="text-zinc-400">Jean</p>
-            </div>
-        </a>
-
-        <a href="profile.html" class="flex flex-col items-center justify-center p-4 rounded-xl cursor-pointer outline-none bg-olive-950 hover:bg-zinc-900">
-            <svg class="w-32 h-32 text-zinc-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
-                <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
-            </svg>
-            <div class="mt-3 text-white font-mono font-bold text-sm text-center leading-tight">
-                <p>Charlie</p>
-                <p class="text-zinc-400">Kirk</p>
-            </div>
-        </a>
         
-        <a href="profile.html" class="flex flex-col items-center justify-center p-4 rounded-xl cursor-pointer outline-none bg-olive-950 hover:bg-zinc-900">
-            <svg class="w-32 h-32 text-zinc-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
-                <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
-            </svg>
-            <div class="mt-3 text-white font-mono font-bold text-sm text-center leading-tight">
-                <p>Dani</p>
-                <p class="text-zinc-400">Preafericitul</p>
-            </div>
-        </a>
-
-        <a href="profile.html" class="flex flex-col items-center justify-center p-4 rounded-xl cursor-pointer outline-none bg-olive-950 hover:bg-zinc-900">
-            <svg class="w-32 h-32 text-zinc-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" focusable="false" aria-hidden="true">
-                <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/>
-            </svg>
-            <div class="mt-3 text-white font-mono font-bold text-sm text-center leading-tight">
-                <p>Efix</p>
-                <p class="text-zinc-400">Krater</p>
-            </div>
-        </a>
 
     </section>
 
