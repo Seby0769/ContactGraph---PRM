@@ -1,10 +1,3 @@
-
-const profileCards = document.querySelectorAll ('#profile-cards a');
-const filter = document.querySelector ('#filter');
-
-
-const cardsArray = Array.from(profileCards);
-
 //profile cards:
 const profileCardsContainer = document.querySelector ('#profile-cards');
 
@@ -52,12 +45,14 @@ search.addEventListener('input', function(event){
 });
 
 //dropdown filter:
+const filter = document.querySelector ('#filter');
+
 filter.addEventListener('change' , function(event){
     const option = event.target.value;
 
-    cardsArray.sort(function(CardA, CardB){
-        const textA = CardA.textContent.toLowerCase().trim();
-        const textB = CardB.textContent.toLowerCase().trim();
+    profiles.sort(function(profileA, profileB){
+        const textA = profileA.lastname.toLowerCase().trim();
+        const textB = profileB.lastname.toLowerCase().trim();
 
         if(option === "alphabetically"){
             return textA.localeCompare(textB);
@@ -67,8 +62,6 @@ filter.addEventListener('change' , function(event){
         }
     });
 
-    cardsArray.forEach(function(card) {
-        profileCardsContainer.appendChild(card);
-    });
+    renderCards(profiles);
 });
 
