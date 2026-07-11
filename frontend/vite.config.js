@@ -5,4 +5,12 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
   ],
+  server: {
+    watch: {
+      usePolling: true,
+    }
+  }
 })
+
+
+
