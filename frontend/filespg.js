@@ -71,11 +71,38 @@ filter.addEventListener('change', function (event) {
 });
 
 //add file button:
-// const addFile = document.querySelector('#addFile');
+const addFileButton = document.querySelector('#addFile');
+const modalPopUp = document.querySelector('#addModal');
 
-// addFile.addEventListener('click', function(event){
-//     const click = event.target.value;
+addFileButton.addEventListener('click', function(){
+    modalPopUp.classList.remove('hidden');
+});
 
+const cancelAddFile = document.querySelector('#cancelAdd');
 
-// });
+cancelAddFile.addEventListener('click', function(){
+    modalPopUp.classList.add('hidden');
+});
 
+const saveFileButton = document.querySelector('#saveNewFile');
+const inputLastName = document.querySelector('#newLastName');
+const inputFirstName = document.querySelector('#newFirstName');
+
+saveFileButton.addEventListener('click', function(){
+    const newLastName = inputLastName.value;
+    const newFirstName = inputFirstName.value;
+
+    function addNewProfile(lastname, firstname){
+        const newProfile = {id: Date.now(), lastname, firstname};
+        profiles.push(newProfile); 
+    };
+    addNewProfile(newLastName, newFirstName);
+
+    localStorage.setItem('profilesDB', JSON.stringify(profiles));
+    modalPopUp.classList.add('hidden');
+
+    inputLastName.value = '';
+    inputFirstName.value = '';
+
+    renderCards(profiles);
+});

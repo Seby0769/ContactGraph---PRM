@@ -45,3 +45,10 @@ deleteFileButton.addEventListener('click', function(){
     window.location.href = 'filespg.html';
     }
 });
+
+//edit file button:
+const editFileButton = document.querySelector('#editFileButton');
+
+editFileButton.addEventListener('click', function(){
+    
+});
