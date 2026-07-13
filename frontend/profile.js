@@ -18,15 +18,15 @@ const currentProfile = profiles.find(function(profile) {
     return profile.id == profileId;
 });
 
-const surName = document.querySelector('#surName');
+const lastName = document.querySelector('#surName');
 const firstName = document.querySelector('#firstName');
 
 if (currentProfile){
-    surName.textContent = currentProfile.lastname;  
+    lastName.textContent = currentProfile.lastname;  
     firstName.textContent = currentProfile.firstname;
 }
 else {
-    surName.textContent = "404";
+    lastName.textContent = "404";
     firstName.textContent = "404";
 }
 
@@ -48,7 +48,32 @@ deleteFileButton.addEventListener('click', function(){
 
 //edit file button:
 const editFileButton = document.querySelector('#editFileButton');
+const editPopUp = document.querySelector('#editModal');
 
 editFileButton.addEventListener('click', function(){
-    
+    editPopUp.classList.remove('hidden');
+
+    newLastName.value = currentProfile.lastname;
+    newFirstName.value = currentProfile.firstname;
+});
+
+const cancelEdit = document.querySelector('#cancelEdit');
+
+cancelEdit.addEventListener('click', function(){
+    editPopUp.classList.add('hidden');
+});
+
+const saveEdit = document.querySelector('#saveEdit');
+const newLastName = document.querySelector('#editLastName');
+const newFirstName = document.querySelector('#editFirstName');
+
+saveEdit.addEventListener('click', function(){
+    currentProfile.lastname = newLastName.value;
+    currentProfile.firstname = newFirstName.value;
+
+    localStorage.setItem('profilesDB', JSON.stringify(profiles));
+    editPopUp.classList.add('hidden');
+
+    lastName.textContent = currentProfile.lastname;
+    firstName.textContent = currentProfile.firstname;
 });
