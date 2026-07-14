@@ -115,3 +115,38 @@ function renderLogs(dataArray){
 };
 
 renderLogs(currentProfileLogs);
+
+//add logs: 
+const addLog = document.querySelector('#addLog');
+const addModalLog = document.querySelector('#addModalLog');
+
+addLog.addEventListener('click', function(){
+    addModalLog.classList.remove('hidden');
+});
+
+const cancelAddLog = document.querySelector('#cancelAddLog');
+
+cancelAddLog.addEventListener('click', function(){
+    addModalLog.classList.add('hidden');
+});
+
+const saveNewLog = document.querySelector('#saveNewLog');
+const newLogInput = document.querySelector('#newLog');
+
+saveNewLog.addEventListener('click', function(){
+    const newLogContent = newLogInput.value; 
+
+    function addNewLog(newLogContent, profileID){
+        const newLog = {profileId: profileID, id: Date.now(), date: new Date().toLocaleString(), content: newLogContent}
+        logs.push(newLog);
+        localStorage.setItem('logsDB', JSON.stringify(logs));
+        currentProfileLogs.push(newLog);
+    };
+
+    addNewLog(newLogContent, profileId);
+    addModalLog.classList.add('hidden');
+
+    newLogInput.value = '';
+
+    renderLogs(currentProfileLogs);
+});
