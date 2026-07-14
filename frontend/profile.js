@@ -79,10 +79,39 @@ saveEdit.addEventListener('click', function(){
 });
 
 //logs:
-let dummyLogs = [
-    {}
+const defaultLogs = [
+    {profileId: 1, id: 1, date: new Date().toLocaleString(), content:"Cam supi azi"},
+    {profileId: 1, id: 2, date: new Date().toLocaleString(), content:"Cam fericit azi"},
+    {profileId: 2, id: 3, date: new Date().toLocaleString(), content:"Cam nesi azi"},
+]; 
 
-]
+if (!localStorage.getItem('logsDB')) {
+    localStorage.setItem('logsDB', JSON.stringify(defaultLogs));
+}
+let logs = JSON.parse(localStorage.getItem('logsDB'));
 
-const logsContainer = document.querySelector('#logsContainer'); 
+const currentProfileLogs = logs.filter(function(log){
+    return log.profileId == profileId;
+});
 
+const logsContainer = document.querySelector('#logsContainer');
+
+function renderLogs(dataArray){
+    logsContainer.innerHTML = '';
+
+    dataArray.forEach(function(log){
+        const htmlString = 
+        `<div class="flex border-b border-green-600 hover:bg-zinc-800/50 transition-colors">
+                <div class="w-32 shrink-0 px-4 py-3 text-green-500 border-r border-green-600 font-mono text-sm flex items-start justify-center pt-4">
+                    ${log.date}
+                </div>
+                <div class="px-4 py-3 w-full text-white">
+                    ${log.content}
+                </div>
+        </div>`
+
+        logsContainer.insertAdjacentHTML('beforeend', htmlString);
+    });
+};
+
+renderLogs(currentProfileLogs);

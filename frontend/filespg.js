@@ -29,7 +29,7 @@ function renderCards(dataArray) {
 
         profileCardsContainer.insertAdjacentHTML('beforeend', htmlString);
     });
-}
+};
 
 renderCards(profiles);
 
