@@ -77,3 +77,12 @@ saveEdit.addEventListener('click', function(){
     lastName.textContent = currentProfile.lastname;
     firstName.textContent = currentProfile.firstname;
 });
+
+//logs:
+let dummyLogs = [
+    {}
+
+]
+
+const logsContainer = document.querySelector('#logsContainer'); 
+
