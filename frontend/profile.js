@@ -179,7 +179,7 @@ logsContainer.addEventListener('click', function(event){
 
     clickedRow.classList.add('bg-zinc-900');
     currentSelectedLog = clickedRow.getAttribute('id'); 
-    console.log(currentSelectedLog);
+    // console.log(currentSelectedLog);
 });
 
 //delete log:
@@ -206,27 +206,44 @@ deleteLog.addEventListener('click', function(){
 });
 
 //edit log:
-// const editLog = document.querySelector('#editLog');
-// const editLogPopUp = document.querySelector('#editLogPopUp');
-// const editLogInput = document.querySelector('#editLogArea');
-// const cancelEditLog = document.querySelector('#cancelEditLog');
-// const saveEditLog = document.querySelector('#saveEditLog');
+const editLog = document.querySelector('#editLog');
+const editLogPopUp = document.querySelector('#editLogPopUp');
+const editLogInput = document.querySelector('#editLogArea');
+const cancelEditLog = document.querySelector('#cancelEditLog');
+const saveEditLog = document.querySelector('#saveEditLog'); 
 
-// const selectedLogContent = logs.find(function(log){
+editLog.addEventListener('click', function(){
+    const selectedLog = logs.find(function(log){
+        if(log.id == currentSelectedLog){
+            return log;
+        };
+    });
 
-// });
+    let selectedLogContent = selectedLog.content;
+    editLogPopUp.classList.remove('hidden');
+    editLogInput.value = selectedLogContent;
+});
 
-// editLog.addEventListener('click', function(){
-//     editLogPopUp.classList.remove('hidden');
-
-//     editLogInput.value = ;
-// });
-
-// cancelEditLog.addEventListener('click', function(){
-//     editLogPopUp.classList.add('hidden');
-// });
+cancelEditLog.addEventListener('click', function(){
+    editLogPopUp.classList.add('hidden');
+});
 
 
-// saveEditLog.addEventListener('click', function(){
+saveEditLog.addEventListener('click', function(){
+    editLogPopUp.classList.add('hidden');
+    const selectedLog = logs.find(function(log){
+        if(log.id == currentSelectedLog){
+            return log;
+        };
+    });
     
-// });
+    selectedLog.content = editLogInput.value;
+
+    localStorage.setItem('logsDB', JSON.stringify(logs));
+        
+    const updatedCurrentProfileLogs = logs.filter(function(log){
+        return log.profileId == profileId;
+    });
+
+    renderLogs(updatedCurrentProfileLogs);    
+});
