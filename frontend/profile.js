@@ -101,7 +101,7 @@ function renderLogs(dataArray){
 
     dataArray.forEach(function(log){
         const htmlString = 
-        `<div class="flex border-b border-green-600 hover:bg-zinc-800/50 transition-colors">
+        `<div id="${log.id}" class="log-row flex border-b border-green-600 hover:bg-zinc-800/50 transition-colors">
                 <div class="w-32 shrink-0 px-4 py-3 text-green-500 border-r border-green-600 font-mono text-sm flex items-start justify-center pt-4">
                     ${log.date}
                 </div>
@@ -150,3 +150,37 @@ saveNewLog.addEventListener('click', function(){
 
     renderLogs(currentProfileLogs);
 });
+
+//selecting logs:
+let currentSelectedLog = null;
+logsContainer.addEventListener('click', function(event){
+    const clickedRow = event.target.closest('.log-row');
+    
+    //clicking off the logs removes the class from all
+    if(!clickedRow) {
+        const allRows = logsContainer.querySelectorAll('.log-row');
+        allRows.forEach(function(row){
+            row.classList.remove('bg-zinc-900');
+        });
+        currentSelectedLog = null;
+        return;
+    }
+
+    const allRows = logsContainer.querySelectorAll('.log-row');
+    allRows.forEach(function(row){
+        row.classList.remove('bg-zinc-900');
+    });
+
+    //clicking the one already selected resets all
+    if(currentSelectedLog === clickedRow.getAttribute('id')) {
+        currentSelectedLog = null;
+        return;
+    }
+
+    clickedRow.classList.add('bg-zinc-900');
+    currentSelectedLog = clickedRow.getAttribute('id'); 
+    console.log(currentSelectedLog);
+});
+
+//delete log:
+const deleteLog = document.querySelector('#deleteLog');
