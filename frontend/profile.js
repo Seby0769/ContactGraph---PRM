@@ -184,3 +184,49 @@ logsContainer.addEventListener('click', function(event){
 
 //delete log:
 const deleteLog = document.querySelector('#deleteLog');
+
+deleteLog.addEventListener('click', function(){
+    const confirmDeleteLog = confirm("Are you sure you want to delete this file?");
+    if(confirmDeleteLog){
+        const logToDelete = currentSelectedLog; 
+        console.log(logToDelete);
+        const updatedLogs = logs.filter(function(log){
+            return log.id != logToDelete;
+        });
+        logs = updatedLogs;
+
+        localStorage.setItem('logsDB', JSON.stringify(updatedLogs));
+        
+        const updatedCurrentProfileLogs = logs.filter(function(log){
+            return log.profileId == profileId;
+        });
+
+        renderLogs(updatedCurrentProfileLogs);
+    };
+});
+
+//edit log:
+// const editLog = document.querySelector('#editLog');
+// const editLogPopUp = document.querySelector('#editLogPopUp');
+// const editLogInput = document.querySelector('#editLogArea');
+// const cancelEditLog = document.querySelector('#cancelEditLog');
+// const saveEditLog = document.querySelector('#saveEditLog');
+
+// const selectedLogContent = logs.find(function(log){
+
+// });
+
+// editLog.addEventListener('click', function(){
+//     editLogPopUp.classList.remove('hidden');
+
+//     editLogInput.value = ;
+// });
+
+// cancelEditLog.addEventListener('click', function(){
+//     editLogPopUp.classList.add('hidden');
+// });
+
+
+// saveEditLog.addEventListener('click', function(){
+    
+// });
