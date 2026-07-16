@@ -78,8 +78,11 @@
             
             <div class="bg-zinc-900 border border-zinc-700 p-6 rounded-lg w-[32rem] flex flex-col gap-4">
                 <h2 class="text-white text-xl font-mono">Add Log</h2>
-                <textarea id="newLog" placeholder="log..." rows="5" class="bg-zinc-800 text-white border border-zinc-600 rounded px-3 py-2 font-mono focus:outline-none focus:border-green-500 resize-y"></textarea>
-                
+                <input type="text" id="newLogLocation" placeholder="Location" class="bg-zinc-800 text-white border border-zinc-600 rounded px-3 py-2 font-mono focus:outline-none focus:border-green-500">
+                <input type="text" id="newLogSubject" placeholder="Subject" class="bg-zinc-800 text-white border border-zinc-600 rounded px-3 py-2 font-mono focus:outline-none focus:border-green-500">
+                <input type="text" id="newLogBehavior" placeholder="Behavior" class="bg-zinc-800 text-white border border-zinc-600 rounded px-3 py-2 font-mono focus:outline-none focus:border-green-500">
+                <textarea id="newLogNote" placeholder="Notes.." rows="5" class="bg-zinc-800 text-white border border-zinc-600 rounded px-3 py-2 font-mono focus:outline-none focus:border-green-500 resize-y"></textarea>
+
                 <div class="flex justify-end gap-3 mt-4">
                     <button id="cancelAddLog" class="px-4 py-2 font-mono text-zinc-400 hover:text-white transition-colors">Cancel</button>
                     <button id="saveNewLog" class="px-4 py-2 font-mono text-green-400 border border-green-900/50 rounded hover:bg-green-900/30 hover:border-green-800 transition-colors">Save</button>

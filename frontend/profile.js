@@ -80,9 +80,9 @@ saveEdit.addEventListener('click', function(){
 
 //logs:
 const defaultLogs = [
-    {profileId: 1, id: 1, date: new Date().toLocaleString(), content:"Cam supi azi"},
-    {profileId: 1, id: 2, date: new Date().toLocaleString(), content:"Cam fericit azi"},
-    {profileId: 2, id: 3, date: new Date().toLocaleString(), content:"Cam nesi azi"},
+    {profileId: 1, id: 1, date: new Date().toLocaleString(), location: "University", subject: "About something", behavior: "Deviation from baseline", notes: "something something0"},
+    {profileId: 1, id: 2, date: new Date().toLocaleString(), location: "Park", subject: "About something", behavior: "Deviation from baseline", notes: "something something1"},
+    {profileId: 2, id: 3, date: new Date().toLocaleString(), location: "Mall", subject: "About something", behavior: "Deviation from baseline", notes: "something something2"},
 ]; 
 
 if (!localStorage.getItem('logsDB')) {
@@ -101,14 +101,29 @@ function renderLogs(dataArray){
 
     dataArray.forEach(function(log){
         const htmlString = 
-        `<div id="${log.id}" class="log-row flex border-b border-green-600 hover:bg-zinc-800/50 transition-colors">
-                <div class="w-32 shrink-0 px-4 py-3 text-green-500 border-r border-green-600 font-mono text-sm flex items-start justify-center pt-4">
-                    ${log.date}
+        `<div id="${log.id}" class="log-row flex border-b border-green-600 hover:bg-zinc-800/50 transition-colors cursor-pointer">
+            <div class="w-32 shrink-0 px-4 py-3 text-green-500 border-r border-green-600 font-mono text-sm flex items-start justify-center pt-4">
+                ${log.date}
+            </div>
+            <div class="px-4 py-3 w-full text-zinc-300 flex flex-col gap-2 text-sm">
+                <div class="grid grid-cols-[80px_1fr] gap-2">
+                    <span class="text-zinc-500 font-semibold">Location:</span>
+                    <span class="text-zinc-100">${log.location}</span>
                 </div>
-                <div class="px-4 py-3 w-full text-white">
-                    ${log.content}
+                <div class="grid grid-cols-[80px_1fr] gap-2">
+                    <span class="text-zinc-500 font-semibold">Subject:</span>
+                    <span class="text-zinc-100">${log.subject}</span>
                 </div>
-        </div>`
+                <div class="grid grid-cols-[80px_1fr] gap-2">
+                    <span class="text-green-600/80 font-semibold">Behavior:</span>
+                    <span class="text-zinc-100">${log.behavior}</span>
+                </div>
+                <div class="grid grid-cols-[80px_1fr] gap-2 pt-1 border-t border-zinc-700/50 mt-1">
+                    <span class="text-zinc-500 font-semibold">Notes:</span>
+                    <span class="text-zinc-300 italic">${log.notes}</span>
+                </div>
+            </div>
+        </div>`;
 
         logsContainer.insertAdjacentHTML('beforeend', htmlString);
     });
@@ -131,22 +146,34 @@ cancelAddLog.addEventListener('click', function(){
 });
 
 const saveNewLog = document.querySelector('#saveNewLog');
-const newLogInput = document.querySelector('#newLog');
+const newLogLocationInput = document.querySelector('#newLogLocation');
+const newLogSubjectInput = document.querySelector('#newLogSubject');
+const newLogBehaviorInput = document.querySelector('#newLogBehavior');
+const newLogNotesInput = document.querySelector('#newLogNote');
 
 saveNewLog.addEventListener('click', function(){
-    const newLogContent = newLogInput.value; 
+    const newLogLocationContent = newLogLocationInput.value;
+    const newLogSubjectContent = newLogSubjectInput.value;
+    const newLogBehaviorContent = newLogBehaviorInput.value;
+    const newLogNotesContent = newLogNotesInput.value;  
 
-    function addNewLog(newLogContent, profileID){
-        const newLog = {profileId: profileID, id: Date.now(), date: new Date().toLocaleString(), content: newLogContent}
+    function addNewLog(newLogLocationContent, newLogSubjectContent, newLogBehaviorContent, newLogNotesContent, profileID){
+        const newLog = {profileId: profileID, id: Date.now(), date: new Date().toLocaleString(), location: newLogLocationContent, 
+            subject: newLogSubjectContent, behavior: newLogBehaviorContent, notes: newLogNotesContent
+        };
+
         logs.push(newLog);
         localStorage.setItem('logsDB', JSON.stringify(logs));
         currentProfileLogs.push(newLog);
     };
 
-    addNewLog(newLogContent, profileId);
+    addNewLog(newLogLocationContent, newLogSubjectContent, newLogBehaviorContent, newLogNotesContent, profileId);
     addModalLog.classList.add('hidden');
 
-    newLogInput.value = '';
+    newLogLocationInput.value = '';
+    newLogSubjectInput.value = '';
+    newLogBehaviorInput.value = '';
+    newLogNotesInput.value = '';
 
     renderLogs(currentProfileLogs);
 });
