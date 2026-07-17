@@ -85,24 +85,36 @@ cancelAddFile.addEventListener('click', function(){
 });
 
 const saveFileButton = document.querySelector('#saveNewFile');
-const inputLastName = document.querySelector('#newLastName');
-const inputFirstName = document.querySelector('#newFirstName');
+const inputLastName = document.querySelector('#LastName');
+const inputFirstName = document.querySelector('#FirstName');
+const inputDateOfBirth = document.querySelector('#dateOfBirth');
+const inputGender = document.querySelector('#gender');
+const inputOccupation = document.querySelector('#occupation');
+const inputCity = document.querySelector('#city');
 
 saveFileButton.addEventListener('click', function(){
-    const newLastName = inputLastName.value;
-    const newFirstName = inputFirstName.value;
+    const LastName = inputLastName.value;
+    const FirstName = inputFirstName.value;
+    const DateOfBirth = inputDateOfBirth.value;
+    const Gender = inputGender.value;
+    const Occupation = inputOccupation.value;
+    const City = inputCity.value;
 
-    function addNewProfile(lastname, firstname){
-        const newProfile = {id: Date.now(), lastname, firstname};
+    function addNewProfile(lastname, firstname, dateofbirth, gender, occupation, city ){
+        const newProfile = {id: Date.now(), lastname, firstname, dateofbirth, gender, occupation, city};
         profiles.push(newProfile); 
     };
-    addNewProfile(newLastName, newFirstName);
+    addNewProfile(LastName, FirstName, DateOfBirth, Gender, Occupation, City);
 
     localStorage.setItem('profilesDB', JSON.stringify(profiles));
     modalPopUp.classList.add('hidden');
 
     inputLastName.value = '';
     inputFirstName.value = '';
+    inputDateOfBirth.value = '';
+    inputGender.value = '';
+    inputOccupation.value = '';
+    inputCity.value = '';
 
     renderCards(profiles);
 });

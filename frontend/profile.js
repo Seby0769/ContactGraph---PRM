@@ -1,7 +1,7 @@
 let defaultProfiles = [
-    {id: 1, lastname: "Aris", firstname: "Giani"},
-    {id: 2, lastname: "Dumitriu", firstname: "Ionut"},
-    {id: 3, lastname: "Tepes", firstname: "Vlad"},
+    { id: 1, lastname: "Aris", firstname: "Giani" },
+    { id: 2, lastname: "Dumitriu", firstname: "Ionut" },
+    { id: 3, lastname: "Tepes", firstname: "Vlad" },
 ];
 
 if (!localStorage.getItem('profilesDB')) {
@@ -14,35 +14,60 @@ const urlParameters = new URLSearchParams(window.location.search);
 
 const profileId = urlParameters.get('id');
 
-const currentProfile = profiles.find(function(profile) {
+const currentProfile = profiles.find(function (profile) {
     return profile.id == profileId;
 });
 
 const lastName = document.querySelector('#surName');
 const firstName = document.querySelector('#firstName');
+const dateOfBirth = document.querySelector('#dateOfBirth');
+const gender = document.querySelector('#gender');
+const occupation = document.querySelector('#occupation');
+const city = document.querySelector('#city');
+const age = document.querySelector('#age');
 
-if (currentProfile){
-    lastName.textContent = currentProfile.lastname;  
+const dateofbirth = new Date(currentProfile.dateofbirth); //for calculating age
+const today = new Date();
+let displayedAge = today.getFullYear() - dateofbirth.getFullYear();
+
+const monthDifference = today.getMonth() - dateofbirth.getMonth();
+if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < dateofbirth.getDate())) {
+    displayedAge--;
+};
+
+
+if (currentProfile) {
+    lastName.textContent = currentProfile.lastname;
     firstName.textContent = currentProfile.firstname;
+    dateOfBirth.textContent = currentProfile.dateofbirth;
+    gender.textContent = currentProfile.gender;
+    occupation.textContent = currentProfile.occupation;
+    city.textContent = currentProfile.city;
+    age.textContent = "| Age: " + displayedAge;
 }
 else {
     lastName.textContent = "404";
     firstName.textContent = "404";
+    dateOfBirth.textContent = "404";
+    gender.textContent = "404";
+    occupation.textContent = "404";
+    city.textContent = "404";
+    age.textContent = "404";
 }
 
 //delete file button:
 const deleteFileButton = document.querySelector('#deleteFileButton');
 
-deleteFileButton.addEventListener('click', function(){
+deleteFileButton.addEventListener('click', function () {
     const confirmDelete = confirm("Are you sure you want to delete this file?");
-    if (confirmDelete){
+    if (confirmDelete) {
         const idToDelete = profileId;
-        const updatedProfiles = profiles.filter(function(profile){
+        const updatedProfiles = profiles.filter(function (profile) {
             return profile.id != idToDelete;
-    });
+        });
 
-    localStorage.setItem('profilesDB', JSON.stringify(updatedProfiles));
-    window.location.href = 'filespg.html';
+        localStorage.setItem('profilesDB', JSON.stringify(updatedProfiles));
+        window.location.href = 'filespg.html';
     }
 });
 
@@ -50,7 +75,7 @@ deleteFileButton.addEventListener('click', function(){
 const editFileButton = document.querySelector('#editFileButton');
 const editPopUp = document.querySelector('#editModal');
 
-editFileButton.addEventListener('click', function(){
+editFileButton.addEventListener('click', function () {
     editPopUp.classList.remove('hidden');
 
     newLastName.value = currentProfile.lastname;
@@ -59,7 +84,7 @@ editFileButton.addEventListener('click', function(){
 
 const cancelEdit = document.querySelector('#cancelEdit');
 
-cancelEdit.addEventListener('click', function(){
+cancelEdit.addEventListener('click', function () {
     editPopUp.classList.add('hidden');
 });
 
@@ -67,7 +92,7 @@ const saveEdit = document.querySelector('#saveEdit');
 const newLastName = document.querySelector('#editLastName');
 const newFirstName = document.querySelector('#editFirstName');
 
-saveEdit.addEventListener('click', function(){
+saveEdit.addEventListener('click', function () {
     currentProfile.lastname = newLastName.value;
     currentProfile.firstname = newFirstName.value;
 
@@ -80,28 +105,28 @@ saveEdit.addEventListener('click', function(){
 
 //logs:
 const defaultLogs = [
-    {profileId: 1, id: 1, date: new Date().toLocaleString(), location: "University", subject: "About something", behavior: "Deviation from baseline", notes: "something something0"},
-    {profileId: 1, id: 2, date: new Date().toLocaleString(), location: "Park", subject: "About something", behavior: "Deviation from baseline", notes: "something something1"},
-    {profileId: 2, id: 3, date: new Date().toLocaleString(), location: "Mall", subject: "About something", behavior: "Deviation from baseline", notes: "something something2"},
-]; 
+    { profileId: 1, id: 1, date: new Date().toLocaleString(), location: "University", subject: "About something", behavior: "Deviation from baseline", notes: "something something0" },
+    { profileId: 1, id: 2, date: new Date().toLocaleString(), location: "Park", subject: "About something", behavior: "Deviation from baseline", notes: "something something1" },
+    { profileId: 2, id: 3, date: new Date().toLocaleString(), location: "Mall", subject: "About something", behavior: "Deviation from baseline", notes: "something something2" },
+];
 
 if (!localStorage.getItem('logsDB')) {
     localStorage.setItem('logsDB', JSON.stringify(defaultLogs));
 }
 let logs = JSON.parse(localStorage.getItem('logsDB'));
 
-const currentProfileLogs = logs.filter(function(log){
+const currentProfileLogs = logs.filter(function (log) {
     return log.profileId == profileId;
 });
 
 const logsContainer = document.querySelector('#logsContainer');
 
-function renderLogs(dataArray){
+function renderLogs(dataArray) {
     logsContainer.innerHTML = '';
 
-    dataArray.forEach(function(log){
-        const htmlString = 
-        `<div id="${log.id}" class="log-row flex border-b border-green-600 hover:bg-zinc-800/50 transition-colors cursor-pointer">
+    dataArray.forEach(function (log) {
+        const htmlString =
+            `<div id="${log.id}" class="log-row flex border-b border-green-600 hover:bg-zinc-800/50 transition-colors cursor-pointer">
             <div class="w-32 shrink-0 px-4 py-3 text-green-500 border-r border-green-600 font-mono text-sm flex items-start justify-center pt-4">
                 ${log.date}
             </div>
@@ -135,13 +160,13 @@ renderLogs(currentProfileLogs);
 const addLog = document.querySelector('#addLog');
 const addModalLog = document.querySelector('#addModalLog');
 
-addLog.addEventListener('click', function(){
+addLog.addEventListener('click', function () {
     addModalLog.classList.remove('hidden');
 });
 
 const cancelAddLog = document.querySelector('#cancelAddLog');
 
-cancelAddLog.addEventListener('click', function(){
+cancelAddLog.addEventListener('click', function () {
     addModalLog.classList.add('hidden');
 });
 
@@ -151,14 +176,15 @@ const newLogSubjectInput = document.querySelector('#newLogSubject');
 const newLogBehaviorInput = document.querySelector('#newLogBehavior');
 const newLogNotesInput = document.querySelector('#newLogNote');
 
-saveNewLog.addEventListener('click', function(){
+saveNewLog.addEventListener('click', function () {
     const newLogLocationContent = newLogLocationInput.value;
     const newLogSubjectContent = newLogSubjectInput.value;
     const newLogBehaviorContent = newLogBehaviorInput.value;
-    const newLogNotesContent = newLogNotesInput.value;  
+    const newLogNotesContent = newLogNotesInput.value;
 
-    function addNewLog(newLogLocationContent, newLogSubjectContent, newLogBehaviorContent, newLogNotesContent, profileID){
-        const newLog = {profileId: profileID, id: Date.now(), date: new Date().toLocaleString(), location: newLogLocationContent, 
+    function addNewLog(newLogLocationContent, newLogSubjectContent, newLogBehaviorContent, newLogNotesContent, profileID) {
+        const newLog = {
+            profileId: profileID, id: Date.now(), date: new Date().toLocaleString(), location: newLogLocationContent,
             subject: newLogSubjectContent, behavior: newLogBehaviorContent, notes: newLogNotesContent
         };
 
@@ -180,13 +206,13 @@ saveNewLog.addEventListener('click', function(){
 
 //selecting logs:
 let currentSelectedLog = null;
-logsContainer.addEventListener('click', function(event){
+logsContainer.addEventListener('click', function (event) {
     const clickedRow = event.target.closest('.log-row');
-    
+
     //clicking off the logs removes the class from all
-    if(!clickedRow) {
+    if (!clickedRow) {
         const allRows = logsContainer.querySelectorAll('.log-row');
-        allRows.forEach(function(row){
+        allRows.forEach(function (row) {
             row.classList.remove('bg-zinc-900');
         });
         currentSelectedLog = null;
@@ -194,37 +220,37 @@ logsContainer.addEventListener('click', function(event){
     }
 
     const allRows = logsContainer.querySelectorAll('.log-row');
-    allRows.forEach(function(row){
+    allRows.forEach(function (row) {
         row.classList.remove('bg-zinc-900');
     });
 
     //clicking the one already selected resets all
-    if(currentSelectedLog === clickedRow.getAttribute('id')) {
+    if (currentSelectedLog === clickedRow.getAttribute('id')) {
         currentSelectedLog = null;
         return;
     }
 
     clickedRow.classList.add('bg-zinc-900');
-    currentSelectedLog = clickedRow.getAttribute('id'); 
+    currentSelectedLog = clickedRow.getAttribute('id');
     // console.log(currentSelectedLog);
 });
 
 //delete log:
 const deleteLog = document.querySelector('#deleteLog');
 
-deleteLog.addEventListener('click', function(){
+deleteLog.addEventListener('click', function () {
     const confirmDeleteLog = confirm("Are you sure you want to delete this file?");
-    if(confirmDeleteLog){
-        const logToDelete = currentSelectedLog; 
+    if (confirmDeleteLog) {
+        const logToDelete = currentSelectedLog;
         console.log(logToDelete);
-        const updatedLogs = logs.filter(function(log){
+        const updatedLogs = logs.filter(function (log) {
             return log.id != logToDelete;
         });
         logs = updatedLogs;
 
         localStorage.setItem('logsDB', JSON.stringify(updatedLogs));
-        
-        const updatedCurrentProfileLogs = logs.filter(function(log){
+
+        const updatedCurrentProfileLogs = logs.filter(function (log) {
             return log.profileId == profileId;
         });
 
@@ -237,11 +263,11 @@ const editLog = document.querySelector('#editLog');
 const editLogPopUp = document.querySelector('#editLogPopUp');
 const editLogInput = document.querySelector('#editLogArea');
 const cancelEditLog = document.querySelector('#cancelEditLog');
-const saveEditLog = document.querySelector('#saveEditLog'); 
+const saveEditLog = document.querySelector('#saveEditLog');
 
-editLog.addEventListener('click', function(){
-    const selectedLog = logs.find(function(log){
-        if(log.id == currentSelectedLog){
+editLog.addEventListener('click', function () {
+    const selectedLog = logs.find(function (log) {
+        if (log.id == currentSelectedLog) {
             return log;
         };
     });
@@ -251,26 +277,26 @@ editLog.addEventListener('click', function(){
     editLogInput.value = selectedLogContent;
 });
 
-cancelEditLog.addEventListener('click', function(){
+cancelEditLog.addEventListener('click', function () {
     editLogPopUp.classList.add('hidden');
 });
 
 
-saveEditLog.addEventListener('click', function(){
+saveEditLog.addEventListener('click', function () {
     editLogPopUp.classList.add('hidden');
-    const selectedLog = logs.find(function(log){
-        if(log.id == currentSelectedLog){
+    const selectedLog = logs.find(function (log) {
+        if (log.id == currentSelectedLog) {
             return log;
         };
     });
-    
+
     selectedLog.content = editLogInput.value;
 
     localStorage.setItem('logsDB', JSON.stringify(logs));
-        
-    const updatedCurrentProfileLogs = logs.filter(function(log){
+
+    const updatedCurrentProfileLogs = logs.filter(function (log) {
         return log.profileId == profileId;
     });
 
-    renderLogs(updatedCurrentProfileLogs);    
+    renderLogs(updatedCurrentProfileLogs);
 });
