@@ -74,12 +74,23 @@ deleteFileButton.addEventListener('click', function () {
 //edit file button:
 const editFileButton = document.querySelector('#editFileButton');
 const editPopUp = document.querySelector('#editModal');
+const newLastName = document.querySelector('#editLastName');
+const newFirstName = document.querySelector('#editFirstName');
+const newDateOfBirth = document.querySelector('#editDateOfBirth');
+const newGender = document.querySelector('#editGender');
+const newOccupation = document.querySelector('#editOccupation');
+const newCity = document.querySelector('#editCity');
 
 editFileButton.addEventListener('click', function () {
     editPopUp.classList.remove('hidden');
 
     newLastName.value = currentProfile.lastname;
     newFirstName.value = currentProfile.firstname;
+    newDateOfBirth.value = currentProfile.dateofbirth;
+    newGender.value = currentProfile.gender;
+    newOccupation.value = currentProfile.occupation;
+    newCity.value = currentProfile.city;
+
 });
 
 const cancelEdit = document.querySelector('#cancelEdit');
@@ -89,18 +100,25 @@ cancelEdit.addEventListener('click', function () {
 });
 
 const saveEdit = document.querySelector('#saveEdit');
-const newLastName = document.querySelector('#editLastName');
-const newFirstName = document.querySelector('#editFirstName');
 
 saveEdit.addEventListener('click', function () {
     currentProfile.lastname = newLastName.value;
     currentProfile.firstname = newFirstName.value;
+    currentProfile.dateofbirth = newDateOfBirth.value;
+    currentProfile.gender = newGender.value;
+    currentProfile.occupation = newOccupation.value;
+    currentProfile.city = newCity.value;    
 
     localStorage.setItem('profilesDB', JSON.stringify(profiles));
     editPopUp.classList.add('hidden');
 
     lastName.textContent = currentProfile.lastname;
     firstName.textContent = currentProfile.firstname;
+    dateOfBirth.textContent = currentProfile.dateofbirth;
+    gender.textContent = currentProfile.gender;
+    occupation.textContent = currentProfile.occupation;
+    city.textContent = currentProfile.city;
+    age.textContent = "| Age: " + displayedAge;
 });
 
 //logs:
