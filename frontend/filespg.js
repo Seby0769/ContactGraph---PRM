@@ -93,7 +93,13 @@ const inputOccupation = document.querySelector('#occupation');
 const inputCity = document.querySelector('#city');
 
 saveFileButton.addEventListener('click', function(){
-    const LastName = inputLastName.value;
+    const birthDate = new Date(inputDateOfBirth.value);//for calculating invalid date
+    const currentDate = new Date;
+    if(birthDate > currentDate){
+        alert("Invalid date of birth!")
+    }
+    else{
+        const LastName = inputLastName.value;
     const FirstName = inputFirstName.value;
     const DateOfBirth = inputDateOfBirth.value;
     const Gender = inputGender.value;
@@ -117,4 +123,5 @@ saveFileButton.addEventListener('click', function(){
     inputCity.value = '';
 
     renderCards(profiles);
+    };
 });
