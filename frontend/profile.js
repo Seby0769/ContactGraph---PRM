@@ -102,12 +102,26 @@ cancelEdit.addEventListener('click', function () {
 const saveEdit = document.querySelector('#saveEdit');
 
 saveEdit.addEventListener('click', function () {
+    const birthDate = new Date(newDateOfBirth.value);//for calculating invalid date
+    const currentDate = new Date;
+    if(birthDate > currentDate){
+        alert("Invalid date of birth!")
+    }
+    else{
     currentProfile.lastname = newLastName.value;
     currentProfile.firstname = newFirstName.value;
     currentProfile.dateofbirth = newDateOfBirth.value;
     currentProfile.gender = newGender.value;
     currentProfile.occupation = newOccupation.value;
     currentProfile.city = newCity.value;    
+
+    dateofbirth = new Date(currentProfile.dateofbirth); //for calculating age
+    today = new Date();
+    displayedAge = today.getFullYear() - dateofbirth.getFullYear();
+    monthDifference = today.getMonth() - dateofbirth.getMonth();
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < dateofbirth.getDate())) {
+        displayedAge--;
+    };
 
     localStorage.setItem('profilesDB', JSON.stringify(profiles));
     editPopUp.classList.add('hidden');
@@ -119,6 +133,7 @@ saveEdit.addEventListener('click', function () {
     occupation.textContent = currentProfile.occupation;
     city.textContent = currentProfile.city;
     age.textContent = "| Age: " + displayedAge;
+    };
 });
 
 //logs:
