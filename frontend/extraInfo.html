@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" class="no-scrollbar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRM - Profile - ExtraInfo</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="extraInfo.js" defer></script>
+</head>
+
+<body class="bg-olive-950 overflow-y-auto no-scrollbar max-w-7xl mx-auto pb-16">       
+    <h1 class="font-mono text-green-500 text-4xl flex justify-center pt-15">-- Extra Information --</h1>
+
+    <section class="flex flex-col border border-zinc-700 p-6 rounded-lg w-full gap-4 mt-10">
+        <h2 class="font-mono text-2xl text-green-500">[Key Traits]</h2>
+        <textarea id="newLogNote" placeholder="A single-sentence summary of their operational personality. (e.g., Highly defensive perfectionist who prioritizes technical accuracy over social cohesion.)" rows="5" class="bg-zinc-800 text-white border border-zinc-600 rounded px-3 py-2 font-mono focus:outline-none focus:border-green-500 resize-none"></textarea>
+    </section>
+
+    <hr class="border-zinc-800 my-10">
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full">
+        
+        <!-- Column 1: BASELINE -->
+        <div class="flex flex-col gap-6">
+            <h3 class="text-zinc-100 font-mono text-lg border-b border-zinc-800 pb-2">1. BASELINE</h3>
+            
+            <div>
+                <label class="text-green-500 font-mono text-sm block mb-2">[vocal_baseline]</label>
+                <textarea 
+                    class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-28 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
+                    placeholder="Describe speed, volume, pitch, and filler words in a relaxed state. (e.g., Speaks rapidly, low pitch, uses 'like' frequently)"></textarea>
+            </div>
+
+            <div>
+                <label class="text-green-500 font-mono text-sm block mb-2">[physical_baseline]</label>
+                <textarea 
+                    class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-28 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
+                    placeholder="Describe natural posture, eye contact %, and hand placement. (e.g., Leans back, maintains 70% eye contact, hands mostly in pockets)"></textarea>
+            </div>
+            
+            <div>
+                <label class="text-green-500 font-mono text-sm block mb-2">[idiosyncrasies]</label>
+                <textarea 
+                    class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-28 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
+                    placeholder="List constant physical quirks that happen even without stress. (e.g., Always taps foot, frequently clears throat - false positives for anxiety)"></textarea>
+            </div>
+        </div>
+
+        <!-- Column 2: PRESSURE STATE  -->
+        <div class="flex flex-col gap-6">
+            <h3 class="text-zinc-100 font-mono text-lg border-b border-zinc-800 pb-2">2. PRESSURE STATE</h3>
+            
+            <div>
+                <label class="text-green-500 font-mono text-sm block mb-2">[triggers]</label>
+                <textarea 
+                    class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-28 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
+                    placeholder="List specific topics, actions, or phrases that guarantee a defensive or aggressive reaction. (e.g., Micromanagement, having their logic questioned)"></textarea>
+            </div>
+            
+            <div>
+                <label class="text-green-500 font-mono text-sm block mb-2">[the_tell]</label>
+                <textarea 
+                    class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-28 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
+                    placeholder="List objective physical changes that occur under pressure. (e.g., Blink rate doubles, rubs back of neck, breaks eye contact entirely)"></textarea>
+            </div>
+            
+            <div>
+                <label class="text-green-500 font-mono text-sm block mb-2">[evasion_tactic]</label>
+                <textarea 
+                    class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-28 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
+                    placeholder="Describe how they dodge direct questions. (e.g., Answers with a question, blames other departments, uses humor to deflect)"></textarea>
+            </div>
+        </div>
+
+        <!-- Column 3: OP MANUAL -->
+        <div class="flex flex-col gap-6">
+            <h3 class="text-green-500 font-mono text-lg border-b border-zinc-800 pb-2">3. OP MANUAL</h3>
+            
+            <div>
+                <label class="text-green-500 font-mono text-sm block mb-2">[core_driver]</label>
+                <textarea 
+                    class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-28 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
+                    placeholder="Identify their primary psychological motivator. (e.g., Ego, fear of failure, peer validation, financial security)"></textarea>
+            </div>
+            
+            <div>
+                <label class="text-green-500 font-mono text-sm block mb-2">[persuasion_vector]</label>
+                <textarea 
+                    class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-40 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
+                    placeholder="Describe the exact method to convince them. (e.g., Provide raw data, appeal to their pride, let them think the solution was their idea)"></textarea>
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+</html>
