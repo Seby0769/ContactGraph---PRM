@@ -13,7 +13,7 @@
 
     <section class="flex flex-col border border-zinc-700 p-6 rounded-lg w-full gap-4 mt-10">
         <h2 class="font-mono text-2xl text-green-500">[Key Traits]</h2>
-        <textarea id="newLogNote" placeholder="A single-sentence summary of their operational personality. (e.g., Highly defensive perfectionist who prioritizes technical accuracy over social cohesion.)" rows="5" class="bg-zinc-800 text-white border border-zinc-600 rounded px-3 py-2 font-mono focus:outline-none focus:border-green-500 resize-none"></textarea>
+        <textarea id="keyTraits" placeholder="A single-sentence summary of their operational personality. (e.g., Highly defensive perfectionist who prioritizes technical accuracy over social cohesion.)" rows="5" class="bg-zinc-800 text-white border border-zinc-600 rounded px-3 py-2 font-mono focus:outline-none focus:border-green-500 resize-none"></textarea>
     </section>
 
     <hr class="border-zinc-800 my-10">
@@ -26,21 +26,21 @@
             
             <div>
                 <label class="text-green-500 font-mono text-sm block mb-2">[vocal_baseline]</label>
-                <textarea 
+                <textarea id="vocalBaseline"
                     class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-28 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
                     placeholder="Describe speed, volume, pitch, and filler words in a relaxed state. (e.g., Speaks rapidly, low pitch, uses 'like' frequently)"></textarea>
             </div>
 
             <div>
                 <label class="text-green-500 font-mono text-sm block mb-2">[physical_baseline]</label>
-                <textarea 
+                <textarea id="physical_baseline"
                     class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-28 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
                     placeholder="Describe natural posture, eye contact %, and hand placement. (e.g., Leans back, maintains 70% eye contact, hands mostly in pockets)"></textarea>
             </div>
             
             <div>
                 <label class="text-green-500 font-mono text-sm block mb-2">[idiosyncrasies]</label>
-                <textarea 
+                <textarea id="idiosyncrasies"
                     class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-28 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
                     placeholder="List constant physical quirks that happen even without stress. (e.g., Always taps foot, frequently clears throat - false positives for anxiety)"></textarea>
             </div>
@@ -52,21 +52,21 @@
             
             <div>
                 <label class="text-green-500 font-mono text-sm block mb-2">[triggers]</label>
-                <textarea 
+                <textarea id="triggers"
                     class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-28 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
                     placeholder="List specific topics, actions, or phrases that guarantee a defensive or aggressive reaction. (e.g., Micromanagement, having their logic questioned)"></textarea>
             </div>
             
             <div>
                 <label class="text-green-500 font-mono text-sm block mb-2">[the_tell]</label>
-                <textarea 
+                <textarea id="the_tell"
                     class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-28 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
                     placeholder="List objective physical changes that occur under pressure. (e.g., Blink rate doubles, rubs back of neck, breaks eye contact entirely)"></textarea>
             </div>
             
             <div>
                 <label class="text-green-500 font-mono text-sm block mb-2">[evasion_tactic]</label>
-                <textarea 
+                <textarea id="evasionTactic"
                     class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-28 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
                     placeholder="Describe how they dodge direct questions. (e.g., Answers with a question, blames other departments, uses humor to deflect)"></textarea>
             </div>
@@ -78,14 +78,14 @@
             
             <div>
                 <label class="text-green-500 font-mono text-sm block mb-2">[core_driver]</label>
-                <textarea 
+                <textarea id="coreDriver"
                     class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-28 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
                     placeholder="Identify their primary psychological motivator. (e.g., Ego, fear of failure, peer validation, financial security)"></textarea>
             </div>
             
             <div>
                 <label class="text-green-500 font-mono text-sm block mb-2">[persuasion_vector]</label>
-                <textarea 
+                <textarea id="persuasionVector"
                     class="w-full bg-[#1c1c1e] border border-zinc-800 rounded text-zinc-300 p-3 h-40 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 transition-colors resize-none placeholder-zinc-600" 
                     placeholder="Describe the exact method to convince them. (e.g., Provide raw data, appeal to their pride, let them think the solution was their idea)"></textarea>
             </div>

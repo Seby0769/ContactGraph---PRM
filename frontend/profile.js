@@ -173,12 +173,12 @@ function renderLogs(dataArray) {
                     <span class="text-zinc-100">${log.subject}</span>
                 </div>
                 <div class="grid grid-cols-[80px_1fr] gap-2">
-                    <span class="text-green-600/80 font-semibold">Behavior:</span>
+                    <span class="text-zinc-500 font-semibold">Behavior:</span>
                     <span class="text-zinc-100">${log.behavior}</span>
                 </div>
                 <div class="grid grid-cols-[80px_1fr] gap-2 pt-1 border-t border-zinc-700/50 mt-1">
-                    <span class="text-zinc-500 font-semibold">Notes:</span>
-                    <span class="text-zinc-300 italic">${log.notes}</span>
+                    <span class="text-green-600/80 font-semibold">Notes:</span>
+                    <span class="text-zinc-300 ">${log.notes}</span>
                 </div>
             </div>
         </div>`;
