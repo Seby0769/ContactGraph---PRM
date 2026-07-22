@@ -18,7 +18,7 @@ const currentProfile = profiles.find(function (profile) {
     return profile.id == profileId;
 });
 
-const extraInformation = [
+const defaultExtraInfo = [
     {
         profileId: 1,
         key_traits: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -58,17 +58,17 @@ const extraInformation = [
 ];
 
 if (!localStorage.getItem('extraInfoDB')) {
-    localStorage.setItem('extraInfoDB', JSON.stringify(extraInformation));
+    localStorage.setItem('extraInfoDB', JSON.stringify(defaultExtraInfo));
 }
 let extraInfo = JSON.parse(localStorage.getItem('extraInfoDB'));
 
-const currentExtraInfo = extraInfo.find(function (info) {
+let currentExtraInfo = extraInfo.find(function (info) {
     return info.profileId == profileId;
 });
 
 const key_traits = document.querySelector('#keyTraits');
 const vocal_baseline = document.querySelector('#vocalBaseline');
-const physical_baseline = document.querySelector('#physicalBasline');
+const physical_baseline = document.querySelector('#physicalBaseline');
 const idiosyncrasies = document.querySelector('#idiosyncrasies');
 const triggers = document.querySelector('#triggers');
 const the_tell = document.querySelector('#theTell');
@@ -86,18 +86,34 @@ if (currentExtraInfo) {
     evasion_tactic.value = currentExtraInfo.evasion_tactic;
     core_driver.value = currentExtraInfo.core_driver;
     persuasion_vector.value = currentExtraInfo.persuasion_vector;
+} 
+else {
+    currentExtraInfo = {
+        profileId: profileId,
+        key_traits: "", vocal_baseline: "", physical_baseline: "",
+        idiosyncrasies: "", triggers: "", the_tell: "",
+        evasion_tactic: "", core_driver: "", persuasion_vector: ""
+    };
+    extraInfo.push(currentExtraInfo);
 }
-else{
-    function addNewExtraInfo(profileId, key_traits, vocal_baseline, physical_baseline, idiosyncrasies, triggers, the_tell, evasion_tactic, core_driver, persuasion_vector){
-        const ExtraInfo = {
-            profileId: profileId, key_traits: key_traits, vocal_baseline: vocal_baseline, physical_baseline: physical_baseline,
-            idiosyncrasies: idiosyncrasies, triggers: triggers, the_tell: the_tell, evasion_tactic: evasion_tactic,
-            core_driver: core_driver,  persuasion_vector: persuasion_vector
-        };
 
-        extraInfo.push(newExtraInfo);
+//auto save
+const allTextareas = document.querySelectorAll('textarea');
+
+allTextareas.forEach(function(textarea) {
+    textarea.addEventListener('blur', function() {
+        
+        currentExtraInfo.key_traits = key_traits.value;
+        currentExtraInfo.vocal_baseline = vocal_baseline.value;
+        currentExtraInfo.physical_baseline = physical_baseline.value;
+        currentExtraInfo.idiosyncrasies = idiosyncrasies.value;
+        currentExtraInfo.triggers = triggers.value;
+        currentExtraInfo.the_tell = the_tell.value;
+        currentExtraInfo.evasion_tactic = evasion_tactic.value;
+        currentExtraInfo.core_driver = core_driver.value;
+        currentExtraInfo.persuasion_vector = persuasion_vector.value;
+
         localStorage.setItem('extraInfoDB', JSON.stringify(extraInfo));
-    };  
-};
-
+    });
+});
 

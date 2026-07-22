@@ -333,3 +333,18 @@ saveEditLog.addEventListener('click', function () {
 
     renderLogs(updatedCurrentProfileLogs);
 });
+
+
+//extraInformation:
+const containerExtraInfo = document.querySelector('#extraInfoProfilePg')
+
+function renderExtraInfoLink(id) {
+    const htmlString = `
+        <a href="extraInfo.html?id=${id}" class="pb-1 border-b-[3px] border-green-600 text-white font-medium hover:text-green-400 transition-colors">
+            Extra information
+        </a>`;
+
+    containerExtraInfo.innerHTML = htmlString;
+};
+
+renderExtraInfoLink(profileId);
