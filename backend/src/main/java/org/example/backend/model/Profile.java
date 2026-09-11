@@ -1,9 +1,9 @@
-package org.example.backend;
+package org.example.backend.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 
@@ -19,6 +19,8 @@ public class Profile {
     String gender;
     String occupation;
     String city;
+
+    public Profile(){};
 
     public Profile(String lastName, String firstName, LocalDate dateOfBirth, String gender, String occupation, String city) {
         this.lastName = lastName;
@@ -52,4 +54,5 @@ public class Profile {
     public String getCity() {
         return city;
     }
+
 }
