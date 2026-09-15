@@ -48,4 +48,17 @@ public class ProfileController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(profile);
         }
     }
+
+    @DeleteMapping("/profiles/{id}")
+    public ResponseEntity<Void> deleteProfile(@PathVariable long id){
+        Optional<Profile> profileToCheck = profileRepository.findById(id);
+        if (profileToCheck.isPresent()){
+            Profile profileToDelete = profileToCheck.get();
+            profileRepository.delete(profileToDelete);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }
