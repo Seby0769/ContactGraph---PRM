@@ -2,6 +2,7 @@ package org.example.backend.controller;
 
 import org.example.backend.model.Profile;
 import org.example.backend.repository.ProfileRepository;
+import org.hibernate.property.access.internal.PropertyAccessFieldImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

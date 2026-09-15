@@ -1,0 +1,43 @@
+package org.example.backend.controller;
+import org.apache.commons.logging.LogFactory;
+import org.example.backend.model.Log;
+import org.example.backend.model.LogRequest_DTO;
+import org.example.backend.model.Profile;
+import org.example.backend.repository.LogRepository;
+import org.example.backend.repository.ProfileRepository;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.Optional;
+
+@RestController
+public class LogController {
+    private static final org.apache.commons.logging.Log log = LogFactory.getLog(LogController.class);
+    LogRepository logRepository;
+    ProfileRepository profileRepository;
+
+    public LogController(LogRepository logRepository, ProfileRepository profileRepository){
+        this.logRepository = logRepository;
+        this.profileRepository = profileRepository;
+    }
+
+    @PostMapping("/logs")
+    public ResponseEntity<Log> getLogRqDTO(@RequestBody LogRequest_DTO dto){
+        Optional<Profile> profile = profileRepository.findById(dto.getProfileId());
+        if (profile.isPresent()){
+            Profile searchedProfile = profile.get();
+            Log log = new Log(searchedProfile, LocalDate.parse(dto.getDateOfLog()), LocalTime.parse(dto.getTimeOfLog()), dto.getLocation(), dto.getSubject(), dto.getBehavior(), dto.getNotes());
+            Log newLog = logRepository.save(log);
+            return ResponseEntity.status(HttpStatus.CREATED).body(newLog);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+}
