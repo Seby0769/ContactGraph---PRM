@@ -7,12 +7,11 @@ import org.example.backend.repository.LogRepository;
 import org.example.backend.repository.ProfileRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -27,7 +26,7 @@ public class LogController {
     }
 
     @PostMapping("/logs")
-    public ResponseEntity<Log> getLogRqDTO(@RequestBody LogRequest_DTO dto){
+    public ResponseEntity<Log> postLog(@RequestBody LogRequest_DTO dto){
         Optional<Profile> profile = profileRepository.findById(dto.getProfileId());
         if (profile.isPresent()){
             Profile searchedProfile = profile.get();
@@ -38,6 +37,11 @@ public class LogController {
         else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
+    }
+
+    @GetMapping("/profiles/{id}/logs")
+    public List<Log> getLogs(@PathVariable long id){
+        return logRepository.findAllByProfileId(id);
     }
 
 }

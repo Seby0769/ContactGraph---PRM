@@ -31,6 +31,14 @@ public class Log {
         this.notes = notes;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public Profile getProfile() {
+        return profile;
+    }
+
     public LocalDate getDateOfLog() {
         return dateOfLog;
     }

@@ -31,6 +31,10 @@ public class Profile {
         this.city = city;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getLastName() {
         return lastName;
     }
