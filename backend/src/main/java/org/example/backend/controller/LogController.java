@@ -2,6 +2,7 @@ package org.example.backend.controller;
 import org.apache.commons.logging.LogFactory;
 import org.example.backend.model.Log;
 import org.example.backend.model.LogRequest_DTO;
+import org.example.backend.model.LogResponse_DTO;
 import org.example.backend.model.Profile;
 import org.example.backend.repository.LogRepository;
 import org.example.backend.repository.ProfileRepository;
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 public class LogController {
@@ -40,8 +42,11 @@ public class LogController {
     }
 
     @GetMapping("/profiles/{id}/logs")
-    public List<Log> getLogs(@PathVariable long id){
-        return logRepository.findAllByProfileId(id);
+    public List<LogResponse_DTO> getLogs(@PathVariable long id){
+        return logRepository.findAllByProfileId(id)
+                .stream()
+                .map(log -> new LogResponse_DTO(log))
+                .collect(Collectors.toList());
     }
 
 }
