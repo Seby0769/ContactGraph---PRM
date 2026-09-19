@@ -1,7 +1,7 @@
 package org.example.backend.model;
 
 public class LogRequest_DTO {
-    long profileId;
+    Long profileId;
     String dateOfLog;
     String timeOfLog;
     String location;

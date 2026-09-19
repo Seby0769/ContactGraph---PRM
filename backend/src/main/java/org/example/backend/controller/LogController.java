@@ -28,13 +28,14 @@ public class LogController {
     }
 
     @PostMapping("/logs")
-    public ResponseEntity<Log> postLog(@RequestBody LogRequest_DTO dto){
+    public ResponseEntity<LogResponse_DTO> createLog(@RequestBody LogRequest_DTO dto){
         Optional<Profile> profile = profileRepository.findById(dto.getProfileId());
         if (profile.isPresent()){
             Profile searchedProfile = profile.get();
             Log log = new Log(searchedProfile, LocalDate.parse(dto.getDateOfLog()), LocalTime.parse(dto.getTimeOfLog()), dto.getLocation(), dto.getSubject(), dto.getBehavior(), dto.getNotes());
             Log newLog = logRepository.save(log);
-            return ResponseEntity.status(HttpStatus.CREATED).body(newLog);
+            LogResponse_DTO showLog = new LogResponse_DTO(newLog);
+            return ResponseEntity.status(HttpStatus.CREATED).body(showLog);
         }
         else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -42,11 +43,18 @@ public class LogController {
     }
 
     @GetMapping("/profiles/{id}/logs")
-    public List<LogResponse_DTO> getLogs(@PathVariable long id){
-        return logRepository.findAllByProfileId(id)
-                .stream()
-                .map(log -> new LogResponse_DTO(log))
-                .collect(Collectors.toList());
+    public ResponseEntity<List<LogResponse_DTO>> getLogs(@PathVariable long id){
+        Optional<Profile> checkProfile = profileRepository.findById(id);
+        if (checkProfile.isPresent()){
+            List<LogResponse_DTO> response = logRepository.findAllByProfileId(id)
+                                                .stream()
+                                                .map(log -> new LogResponse_DTO(log))
+                                                .collect(Collectors.toList());
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
 }
