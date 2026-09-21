@@ -78,6 +78,16 @@ public class LogController {
         }
     }
 
-
-
+    @DeleteMapping("/logs/{id}")
+    public ResponseEntity<Void> deleteLog (@PathVariable long id){
+        Optional<Log> logToCheck = logRepository.findById(id);
+        if (logToCheck.isPresent()){
+            Log logToDelete = logToCheck.get();
+            logRepository.delete(logToDelete);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }
