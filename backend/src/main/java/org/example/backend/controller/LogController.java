@@ -57,4 +57,27 @@ public class LogController {
         }
     }
 
+    @PutMapping("/logs/{id}")
+    public ResponseEntity<LogResponse_DTO> updatedLog(@PathVariable long id, @RequestBody LogRequest_DTO log){
+        Optional<Log> logToCheck = logRepository.findById(id);
+        if (logToCheck.isPresent()){
+            Log logToUpdate = logToCheck.get();
+            logToUpdate.setDateOfLog(LocalDate.parse(log.getDateOfLog()));
+            logToUpdate.setTimeOfLog(LocalTime.parse(log.getTimeOfLog()));
+            logToUpdate.setLocation(log.getLocation());
+            logToUpdate.setSubject(log.getSubject());
+            logToUpdate.setBehavior(log.getBehavior());
+            logToUpdate.setNotes(log.getNotes());
+            logRepository.save(logToUpdate);
+            LogResponse_DTO logUpdated = new LogResponse_DTO(logToUpdate);
+
+            return ResponseEntity.status(HttpStatus.OK).body(logUpdated);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+
+
 }
