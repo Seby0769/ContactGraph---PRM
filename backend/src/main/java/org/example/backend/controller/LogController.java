@@ -18,7 +18,6 @@ import java.util.stream.Collectors;
 
 @RestController
 public class LogController {
-    private static final org.apache.commons.logging.Log log = LogFactory.getLog(LogController.class);
     LogRepository logRepository;
     ProfileRepository profileRepository;
 

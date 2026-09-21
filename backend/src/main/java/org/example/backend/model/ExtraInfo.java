@@ -3,7 +3,7 @@ package org.example.backend.model;
 import jakarta.persistence.*;
 
 @Entity
-public class ExtraInformation {
+public class ExtraInfo {
     @OneToOne
     Profile profile;
     @Id
@@ -19,9 +19,9 @@ public class ExtraInformation {
     String coreDriver;
     String persuasionVector;
 
-    public ExtraInformation(){};
+    public ExtraInfo(){};
 
-    public ExtraInformation(Profile profile, String keyTraits, String vocalBaseline, String physicalBaseline, String idiosyncrasies, String triggers, String theTells, String evasionTactic, String coreDriver, String persuasionVector) {
+    public ExtraInfo(Profile profile, String keyTraits, String vocalBaseline, String physicalBaseline, String idiosyncrasies, String triggers, String theTells, String evasionTactic, String coreDriver, String persuasionVector) {
         this.profile = profile;
         this.keyTraits = keyTraits;
         this.vocalBaseline = vocalBaseline;
@@ -32,6 +32,10 @@ public class ExtraInformation {
         this.evasionTactic = evasionTactic;
         this.coreDriver = coreDriver;
         this.persuasionVector = persuasionVector;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public Profile getProfile() {
