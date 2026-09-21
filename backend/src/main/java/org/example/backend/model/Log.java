@@ -63,9 +63,6 @@ public class Log {
         return notes;
     }
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
 
     public void setDateOfLog(LocalDate dateOfLog) {
         this.dateOfLog = dateOfLog;
