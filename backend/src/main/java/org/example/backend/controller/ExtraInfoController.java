@@ -73,4 +73,16 @@ public class ExtraInfoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
+    @DeleteMapping("/extraInfo/{id}")
+    public ResponseEntity<Void> deleteExtraInfo(@PathVariable long id) {
+        Optional<ExtraInfo> extraInfo = extraInfoRepository.findById(id);
+        if (extraInfo.isPresent()) {
+            ExtraInfo extraInfoToDelete = extraInfo.get();
+            extraInfoRepository.delete(extraInfoToDelete);
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }
