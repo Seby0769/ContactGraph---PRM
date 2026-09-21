@@ -50,4 +50,27 @@ public class ExtraInfoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
+    @PutMapping("/extraInfo/{id}")
+    public ResponseEntity<ExtraInfoResponse_DTO> updateExtraInfo(@PathVariable long id, @RequestBody ExtraInfoRequest_DTO dto){
+        Optional<ExtraInfo> extraInfo = extraInfoRepository.findById(id);
+        if (extraInfo.isPresent()){
+            ExtraInfo updatedExtraInfo = extraInfo.get();
+            updatedExtraInfo.setKeyTraits(dto.getKeyTraits());
+            updatedExtraInfo.setVocalBaseline(dto.getVocalBaseline());
+            updatedExtraInfo.setPhysicalBaseline(dto.getPhysicalBaseline());
+            updatedExtraInfo.setIdiosyncrasies(dto.getIdiosyncrasies());
+            updatedExtraInfo.setTriggers(dto.getTriggers());
+            updatedExtraInfo.setTheTells(dto.getTheTells());
+            updatedExtraInfo.setEvasionTactic(dto.getEvasionTactic());
+            updatedExtraInfo.setCoreDriver(dto.getCoreDriver());
+            updatedExtraInfo.setPersuasionVector(dto.getPersuasionVector());
+            extraInfoRepository.save(updatedExtraInfo);
+            ExtraInfoResponse_DTO extraInfoResponseDto = new ExtraInfoResponse_DTO(updatedExtraInfo);
+            return ResponseEntity.status(HttpStatus.OK).body(extraInfoResponseDto);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }
