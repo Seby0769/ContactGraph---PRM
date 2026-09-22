@@ -27,9 +27,15 @@ public class ExtraInfoController {
     public ResponseEntity<ExtraInfoResponse_DTO> getExtraInfo(@PathVariable long id){
         Optional<Profile> profile = profileRepository.findById(id);
         if (profile.isPresent()){
-            ExtraInfo extraInfo = extraInfoRepository.findByProfileId(id);
-            ExtraInfoResponse_DTO showExtraInfo = new ExtraInfoResponse_DTO(extraInfo);
-            return ResponseEntity.status(HttpStatus.OK).body(showExtraInfo);
+            Optional<ExtraInfo> checkExtraInfo = extraInfoRepository.findByProfileId(id);
+            if (checkExtraInfo.isPresent()){
+                ExtraInfo extraInfo = checkExtraInfo.get();
+                ExtraInfoResponse_DTO showExtraInfo = new ExtraInfoResponse_DTO(extraInfo);
+                return ResponseEntity.status(HttpStatus.OK).body(showExtraInfo);
+            }
+            else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            }
         }
         else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();

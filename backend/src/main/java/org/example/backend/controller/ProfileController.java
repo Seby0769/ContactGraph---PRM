@@ -1,6 +1,8 @@
 package org.example.backend.controller;
 
+import org.example.backend.model.ExtraInfo;
 import org.example.backend.model.Profile;
+import org.example.backend.repository.ExtraInfoRepository;
 import org.example.backend.repository.ProfileRepository;
 import org.hibernate.property.access.internal.PropertyAccessFieldImpl;
 import org.springframework.http.HttpStatus;
@@ -15,9 +17,11 @@ import java.util.Optional;
 @RestController
 public class ProfileController {
     ProfileRepository profileRepository;
+    ExtraInfoRepository extraInfoRepository;
 
-    public ProfileController(ProfileRepository profileRepository){
+    public ProfileController(ProfileRepository profileRepository, ExtraInfoRepository extraInfoRepository){
         this.profileRepository = profileRepository;
+        this.extraInfoRepository = extraInfoRepository;
     }
 
     @GetMapping("/profiles")
@@ -28,6 +32,8 @@ public class ProfileController {
     @PostMapping("/profiles")
     public ResponseEntity<Profile> createProfile(@RequestBody Profile profile){
         Profile newProfile = profileRepository.save(profile);
+        ExtraInfo extraInfo = new ExtraInfo(newProfile, "", "", "", "", "", "", "", "", "");
+        extraInfoRepository.save(extraInfo);
         return ResponseEntity.status(HttpStatus.CREATED).body(newProfile);
     }
 
