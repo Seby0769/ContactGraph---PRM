@@ -1,4 +1,4 @@
-package org.example.backend.model;
+package org.example.backend.dto;
 
 public class LogRequest_DTO {
     Long profileId;

@@ -1,8 +1,8 @@
 package org.example.backend.controller;
 
 import org.example.backend.model.ExtraInfo;
-import org.example.backend.model.ExtraInfoRequest_DTO;
-import org.example.backend.model.ExtraInfoResponse_DTO;
+import org.example.backend.dto.ExtraInfoRequest_DTO;
+import org.example.backend.dto.ExtraInfoResponse_DTO;
 import org.example.backend.model.Profile;
 import org.example.backend.repository.ExtraInfoRepository;
 import org.example.backend.repository.ProfileRepository;
@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @RestController

@@ -1,8 +1,7 @@
 package org.example.backend.controller;
-import org.apache.commons.logging.LogFactory;
 import org.example.backend.model.Log;
-import org.example.backend.model.LogRequest_DTO;
-import org.example.backend.model.LogResponse_DTO;
+import org.example.backend.dto.LogRequest_DTO;
+import org.example.backend.dto.LogResponse_DTO;
 import org.example.backend.model.Profile;
 import org.example.backend.repository.LogRepository;
 import org.example.backend.repository.ProfileRepository;

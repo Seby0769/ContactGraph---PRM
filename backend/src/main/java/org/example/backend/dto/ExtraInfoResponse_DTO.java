@@ -1,6 +1,8 @@
-package org.example.backend.model;
+package org.example.backend.dto;
 
-public class ExtraInfoRequest_DTO {
+import org.example.backend.model.ExtraInfo;
+
+public class ExtraInfoResponse_DTO {
     Long id;
     Long profileId;
     String keyTraits;
@@ -12,6 +14,20 @@ public class ExtraInfoRequest_DTO {
     String evasionTactic;
     String coreDriver;
     String persuasionVector;
+
+    public ExtraInfoResponse_DTO(ExtraInfo extraInfo) {
+        this.id = extraInfo.getId();
+        this.profileId = extraInfo.getProfile().getId();
+        this.keyTraits = extraInfo.getKeyTraits();
+        this.vocalBaseline = extraInfo.getVocalBaseline();
+        this.physicalBaseline = extraInfo.getPhysicalBaseline();
+        this.idiosyncrasies = extraInfo.getIdiosyncrasies();
+        this.triggers = extraInfo.getTriggers();
+        this.theTells = extraInfo.getTheTells();
+        this.evasionTactic = extraInfo.getEvasionTactic();
+        this.coreDriver = extraInfo.getCoreDriver();
+        this.persuasionVector = extraInfo.getPersuasionVector();
+    }
 
     public Long getId() {
         return id;
