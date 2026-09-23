@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Optional;
+
 @RestController
 public class UserController {
     UserRepository userRepository;
@@ -22,9 +24,15 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity<Void> register(@RequestBody UserRequest_DTO dto){
-        User user = new User(dto.getUsername(), passwordEncoder.encode(dto.getPassword()));
-        userRepository.save(user);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        Optional<User> userOptional = userRepository.findByUsername(dto.getUsername());
+        if (userOptional.isPresent()){
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
+        else {
+            User user = new User(dto.getUsername(), passwordEncoder.encode(dto.getPassword()));
+            userRepository.save(user);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }
     }
 
 }
