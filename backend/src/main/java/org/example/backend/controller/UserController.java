@@ -63,4 +63,16 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        if (session == null){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        else {
+            session.invalidate();
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+    }
 }
