@@ -29,6 +29,10 @@ public class Profile {
         this.city = city;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public Long getId() {
         return id;
     }
